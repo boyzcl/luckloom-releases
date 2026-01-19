@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuckLoom - 下载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 24px;
+      padding: 48px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .app-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+      border-radius: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 24px;
+      font-size: 48px;
+    }
+
+    .app-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .app-tagline {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .download-section {
+      margin-bottom: 32px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 12px;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    .download-btn-android {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      color: white;
+    }
+
+    .download-btn-ios {
+      background: #000;
+      color: white;
+    }
+
+    .download-btn-icon {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    .version-info {
+      font-size: 13px;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 24px 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: #e0e0e0;
+    }
+
+    .divider-text {
+      padding: 0 16px;
+      color: #999;
+      font-size: 14px;
+    }
+
+    .install-guide {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .install-guide-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .install-guide-title-icon {
+      margin-right: 8px;
+    }
+
+    .install-steps {
+      list-style: none;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    .install-steps li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 4px;
+    }
+
+    .install-steps li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-weight: 600;
+    }
+
+    .features {
+      margin: 32px 0;
+      text-align: left;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .feature-text {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .feature-text strong {
+      color: #1a1a1a;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: #666;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #4CAF50;
+    }
+
+    .copyright {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 32px 24px;
+      }
+
+      .app-name {
+        font-size: 24px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="lang-btn" onclick="toggleLanguage()">EN</button>
+
+  <div class="container">
+    <div class="app-icon">🍀</div>
+    <h1 class="app-name">LuckLoom</h1>
+    <p class="app-tagline" id="tagline">每日小幸运，编织爱的回忆</p>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="feature-item">
+        <span class="feature-icon">🎲</span>
+        <div class="feature-text">
+          <strong id="feature1-title">每日抽奖</strong>
+          <span id="feature1-desc">每天随机决定谁来写小幸运</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">💌</span>
+        <div class="feature-text">
+          <strong id="feature2-title">情书记录</strong>
+          <span id="feature2-desc">用文字和图片记录美好瞬间</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📚</span>
+        <div class="feature-text">
+          <strong id="feature3-title">回忆存档</strong>
+          <span id="feature3-desc">所有小幸运永久保存，随时回顾</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download Section -->
+    <div class="download-section">
+      <a href="#" class="download-btn download-btn-android" id="android-btn">
+        <span class="download-btn-icon">▶</span>
+        <span id="android-btn-text">下载 Android 版</span>
+      </a>
+      <div class="version-info" id="android-version">版本 1.0.1 · APK 约 50MB</div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">or</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <a href="https://apps.apple.com/app/luckloom/id6740486498" class="download-btn download-btn-ios" id="ios-btn">
+        <span class="download-btn-icon"></span>
+        <span id="ios-btn-text">App Store 下载</span>
+      </a>
+    </div>
+
+    <!-- Install Guide (Android) -->
+    <div class="install-guide">
+      <div class="install-guide-title">
+        <span class="install-guide-title-icon">📱</span>
+        <span id="guide-title">Android 安装说明</span>
+      </div>
+      <ol class="install-steps">
+        <li data-step="1." id="step1">点击下载按钮获取 APK 文件</li>
+        <li data-step="2." id="step2">打开下载的文件</li>
+        <li data-step="3." id="step3">如提示"未知来源"，请在设置中允许安装</li>
+        <li data-step="4." id="step4">安装完成后即可使用</li>
+      </ol>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-links">
+        <a href="https://boyzcl.github.io/luckloom-docs/privacy.html" id="privacy-link">隐私政策</a>
+        <a href="https://boyzcl.github.io/luckloom-docs/terms.html" id="terms-link">服务条款</a>
+      </div>
+      <p class="copyright">© 2025 LuckLoom. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    // TODO: 替换为实际的 APK 下载链接
+    const APK_DOWNLOAD_URL = 'https://github.com/boyzcl/luckloom-releases/releases/latest/download/luckloom.apk';
+
+    document.getElementById('android-btn').href = APK_DOWNLOAD_URL;
+
+    // 多语言支持
+    let currentLang = 'zh';
+
+    const translations = {
+      zh: {
+        tagline: '每日小幸运，编织爱的回忆',
+        feature1Title: '每日抽奖',
+        feature1Desc: '每天随机决定谁来写小幸运',
+        feature2Title: '情书记录',
+        feature2Desc: '用文字和图片记录美好瞬间',
+        feature3Title: '回忆存档',
+        feature3Desc: '所有小幸运永久保存，随时回顾',
+        androidBtn: '下载 Android 版',
+        androidVersion: '版本 1.0.1 · APK 约 50MB',
+        iosBtn: 'App Store 下载',
+        guideTitle: 'Android 安装说明',
+        step1: '点击下载按钮获取 APK 文件',
+        step2: '打开下载的文件',
+        step3: '如提示"未知来源"，请在设置中允许安装',
+        step4: '安装完成后即可使用',
+        privacy: '隐私政策',
+        terms: '服务条款',
+        langBtn: 'EN'
+      },
+      en: {
+        tagline: 'Daily little luck, weaving memories of love',
+        feature1Title: 'Daily Lottery',
+        feature1Desc: 'Randomly decide who writes the lucky note',
+        feature2Title: 'Love Letters',
+        feature2Desc: 'Record beautiful moments with words and photos',
+        feature3Title: 'Memory Archive',
+        feature3Desc: 'All lucky notes saved forever, revisit anytime',
+        androidBtn: 'Download for Android',
+        androidVersion: 'Version 1.0.1 · APK ~50MB',
+        iosBtn: 'Download on App Store',
+        guideTitle: 'Android Installation Guide',
+        step1: 'Click the download button to get APK file',
+        step2: 'Open the downloaded file',
+        step3: 'If prompted about "unknown sources", allow installation in settings',
+        step4: 'Ready to use after installation',
+        privacy: 'Privacy Policy',
+        terms: 'Terms of Service',
+        langBtn: '中文'
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      updateContent();
+    }
+
+    function updateContent() {
+      const t = translations[currentLang];
+      document.getElementById('tagline').textContent = t.tagline;
+      document.getElementById('feature1-title').textContent = t.feature1Title;
+      document.getElementById('feature1-desc').textContent = t.feature1Desc;
+      document.getElementById('feature2-title').textContent = t.feature2Title;
+      document.getElementById('feature2-desc').textContent = t.feature2Desc;
+      document.getElementById('feature3-title').textContent = t.feature3Title;
+      document.getElementById('feature3-desc').textContent = t.feature3Desc;
+      document.getElementById('android-btn-text').textContent = t.androidBtn;
+      document.getElementById('android-version').textContent = t.androidVersion;
+      document.getElementById('ios-btn-text').textContent = t.iosBtn;
+      document.getElementById('guide-title').textContent = t.guideTitle;
+      document.getElementById('step1').textContent = t.step1;
+      document.getElementById('step2').textContent = t.step2;
+      document.getElementById('step3').textContent = t.step3;
+      document.getElementById('step4').textContent = t.step4;
+      document.getElementById('privacy-link').textContent = t.privacy;
+      document.getElementById('terms-link').textContent = t.terms;
+      document.querySelector('.lang-btn').textContent = t.langBtn;
+    }
+
+    // 检测系统语言
+    if (navigator.language && !navigator.language.startsWith('zh')) {
+      currentLang = 'en';
+      updateContent();
+    }
+  </script>
+</body>
+</html>
